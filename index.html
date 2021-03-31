@@ -49,7 +49,7 @@
 </ul>
 <h2>Konfigurasi sistem</h2>
 <h3>Fstab</h3>
-<ul><li>genfstab -U /mnt >> /mnt/etc/fstab</li>
+<ul><li>genfstab -U /mnt >> /mnt/etc/fstab</li></ul>
 <h3>Chroot</h3>
 <ul><li>arch-chroot /mnt</li></ul>
 <h3>Zona waktu</h3>
@@ -100,7 +100,7 @@
     </ul>
 </ol>
 <h3>Membuat user baru</h3>
-<ul>
+<ul><ul>
     <li>useradd -m -G wheel <i><b>myname</b></i></li>
     <li>passwd <i><b>myname</b></i></li>
 </ul>
@@ -109,14 +109,14 @@
 <ul>
     <li>pacman -S sddm sddm-kcm</li>
     <li>systemctl enable sddm</li>
-</ul>
+</ul></ul>
 <h3>Install desktop kde plasma</h3>
 <ul>
     <li>pacman -S plasma-desktop konsole dolphin spectacle ark gwenview elisa discover powerdevil plasma-systemmonitor kinfocenter khelpcenter</li>
     <li>pacman -S dolphin-plugins plasma-pa plasma-nm kdeplasma-addons kde-system-meta appstream appstream-qt packagekit packagekit-qt5 gst-libav</li>
 </ul>
 <h3>Mengubah tema kursor sddm</h3>
-<ul>
+<ul><ul>
     <li>buka <i><b>System Settings -->Startup and Shutdown -->Login Screen (SDDM) </b></i></li>
     <li>pilih tema <i>breeze</i>, klik <i>Sinchcronize Settings..</i> dan terahir klik <i>apply</i></li>
     <li>reboot</li>
