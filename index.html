@@ -3,5 +3,108 @@
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
+  <h2 align="center">Installing Archlinux and make it useable</h2>
+Pemasangan base linux
+    • Menghubungkan ke internet
+    1) iwctl
+    • # iwctl
+    • [iwd]# device list			(untuk mengetahui nama perangkat wifi)
+    • [iwd]# station device scan		(untuk menscan jaringan wifi yg tersedia)
+    • [iwd]# station device get-networks	(menampilkan nama SSID jaringan dari proses scan)
+    • [iwd]# station device connect SSID 	(menghubungkan ke jaringan wifi)
+    2) Usb tethering
+    • Hubungkan android ke usb
+    • Aktifkan usb tethering di pengaturan android.
+
+    • Perbarui jam sistem
+        ◦ # timedatectl set-ntp true
+
+    • Mengatur partisi
+        ◦ # cfdisk /dev/sda
+
+    • Format partisi
+
+        ◦ # mkfs.ext4 /dev/root_partition
+        ◦ # mkfs.ext4 /dev/home_partition
+        ◦ # mkswap /dev/swap_partition
+
+    • Mount partisi
+        ◦ # mount /dev/root_partition /mnt
+        ◦ # mkdir /mnt/home
+        ◦ # mount /dev/home_partition /mnt/home
+        ◦ # swapon /dev/swap_partition
+
+    • Install base sistem
+        ◦ # pacstrap /mnt base linux linux-firmware base-devel linux-header nano
+
+Konfigurasi Sistem
+
+    • Fstab
+        ◦ # genfstab -U mnt >> /mnt/etc/fstab
+
+    • Chroot
+        ◦ # arch-chroot /mnt
+
+    • Zona waktu
+        ◦ # ln -sf /usr/share/zoneinfo/Region/city  /etc/localtime
+        ◦ # hwclock –systohc
+
+    • Lokalisasi
+        ◦ # nano /etc/locale.gen cari dan hapus komentar en_US.UTF-8
+        ◦ # locale-gen
+        ◦ # nano /etc/locale.conf (isi: LANG=en_US.UTF-8)
+
+
+    • Konfigurasi jaringan
+        ◦ # nano /etc/hostname (ketik: myarch lalu simpan)
+        ◦ # nano /etc/hosts dan isi sebagai berikut:
+		127.0.0.1	localhost
+		::1		localhost
+		127.0.1.1	myarch.localdomain	myarch
+
+    • Membuat sandi root
+        ◦ # passwd
+
+    • Boot loader
+        ◦ # pacman -S grub networkmanager dialog wireless_tools wpa_supplicant os-prober mtools dosfstools gvfs gvfs-mtp ntfs-3g
+        ◦ # grub-install –target=i386-pc /dev/sda
+        ◦ # grub-mkconfig -o /boot/grub/grub.cfg
+        ◦ # exit
+        ◦ # umount -a
+        ◦ # reboot
+
+    • Login sebagai root….
+
+    • Aktifkan koneksi internet
+            1) Menghubungkan ke wifi
+                • # systemctl start NetworkManager
+                • # nmtui → activate a connection → hubungkan ke wifi, masukan sandi.
+                • # systemctl enable NetworkManager
+
+            2) Penambatan Usb (usb tethering)
+                • Hubungkan android ke usb
+                • Aktifkan usb tethering di pengaturan android.
+
+    • Membuat user baru
+        ◦ # useradd -m -G wheel myname
+        ◦ # passwd myname
+
+Install kde plasma minimal
+    • install display manager
+        ◦ ~$ sudo pacman -S sddm sddm-kcm
+        ◦ ~$ sudo systemctl enable sddm
+
+    • install kde plasma
+        ◦ ~$ sudo pacman -S plasma-desktop konsole dolphin spectacle ark gwenview plasma-systemmonitor kinfocenter discover powerdevil elisa
+        ◦ ~$ sudo pacman -S dolphin-plugins packagekit packagekit-qt5 appstream appstream-qt plasma-nm plasma-pa kdeplasma-addons kde-system-meta khelpcenter gst-libav
+
+    • Mengubah tema dan cursor sddm
+        ◦ buka System Settings → Startup and Shutdown → Login Screen (SDDM)
+        ◦ pilih tema breeze, klik Sinchcronize Settings.. dan terahir klik apply.
+        ◦ Reboot…
+
+    • List service systemd
+        ◦ # nano /etc/systemd/system.conf
+        ◦ hapus coment ShowStatus=yes
 </body>
 </html>
