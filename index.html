@@ -49,41 +49,41 @@
 </ul>
 <h2>Konfigurasi sistem</h2>
 <h3>Fstab</h3>
-<ul><li>genfstab -U /mnt >> /mnt/etc/fstab</li></ul>
+<ul><li>genfstab -U /mnt >> /mnt/etc/fstab</li>
 <h3>Chroot</h3>
 <ul><li>arch-chroot /mnt</li></ul>
 <h3>Zona waktu</h3>
-<ul><ul>
+<ul>
     <li>ln -sf /usr/share/zoneinfo/Region/city /etc/localtime</li>
     <li>hwclock --systohc</li>
-</ul></ul>
+</ul>
 <h3>Lokalisasi</h3>
-<ul><ul>
+<ul>
     <li>nano /etc/locale.gen hapus komentar pada <i>en_US.UTF-8</i></li>
     <li>locale-gen</li>
     <li>nano /etc/locale.conf isi dengan <i>LANG=en_US.UTF-8</i> lalu simpan</li>
-</ul></ul>
+</ul>
 <h3>Konfigurasi jaringan</h3>
-<ul><ul>
+<ul>
     <li>nano /etc/hostname isi dengan <i>myarch</i></li>
     <li>nano /etc/hosts masukan seperti dibawah:</li>
     <p>127.0.0.1    localhost</p>
     <p>::1          localhost</p>
     <p>127.0.1.1    myarch.localdomain    myarch</p>
-</ul></ul>
+</ul>
 <h3>Membuat sandi root</h3>
-<ul><ul>
+<ul>
     <li>passwd</li>
-</ul></ul>
+</ul>
 <h3>Boot loader</h3>
-<ul><ul>
+<ul>
     <li>pacman -S grub networkmanager dialog wireless_tools wpa_supplicant os-prober mtools dosfstools gvfs gvfs-mtp ntfs-3g</li>
     <li>grub-install --target=i386-pc /dev/sda</li>
     <li>grub-mkconfig -o /boot/grub/grub.cfg</li>
     <li>exit</li>
     <li>umount -a</li>
     <li>reboot</li>
-</ul></ul>
+</ul>
 <h3>Login sebagai root</h3>
 <h3>Aktifkan koneksi internet</h3>
 <ol>
@@ -100,27 +100,27 @@
     </ul>
 </ol>
 <h3>Membuat user baru</h3>
-<ul><ul>
+<ul>
     <li>useradd -m -G wheel <i><b>myname</b></i></li>
     <li>passwd <i><b>myname</b></i></li>
-</ul></ul>
+</ul>
 <h2>Install kde plasma minimal</h2>
 <h3>Install display manager</h3>
-<ul><ul>
+<ul>
     <li>pacman -S sddm sddm-kcm</li>
     <li>systemctl enable sddm</li>
-</ul></ul>
+</ul>
 <h3>Install desktop kde plasma</h3>
-<ul><ul>
+<ul>
     <li>pacman -S plasma-desktop konsole dolphin spectacle ark gwenview elisa discover powerdevil plasma-systemmonitor kinfocenter khelpcenter</li>
     <li>pacman -S dolphin-plugins plasma-pa plasma-nm kdeplasma-addons kde-system-meta appstream appstream-qt packagekit packagekit-qt5 gst-libav</li>
-</ul></ul>
+</ul>
 <h3>Mengubah tema kursor sddm</h3>
-<ul><ul>
+<ul>
     <li>buka <i><b>System Settings -->Startup and Shutdown -->Login Screen (SDDM) </b></i></li>
     <li>pilih tema <i>breeze</i>, klik <i>Sinchcronize Settings..</i> dan terahir klik <i>apply</i></li>
     <li>reboot</li>
-</ul></ul>
+</ul>
 
 
 </body>
