@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Installing arch linux and make it useable</title>
+    <meta charset="UTF-8">
+    <title>Installing arch linux and make it useable </title>
 </head>
 <body>
-<h1 align="center">Installing arch linux and make it useble</h1>
-<h2>Pemasangan base arch linux</h2>
+<h1>Installing arch linux and make it useble</h1>
+<hr />
+<h2><u>Pemasangan base arch linux</u></h2>
 <h3>Menghubungkan ke internet</h3>
 <ol>
     <li>Via iwctl</li>
@@ -17,7 +19,6 @@
     <li>[iwctl]# station <i>devise</i> connect <i><b>SSID</b></i></li>
 </ul>
     <li>Via usb tethering</li>
-
 <ul>
     <li>Hubungkan hape android ke usb</li>
     <li>aktifkan <i>usb tethering</i> di pengaturan hape</li>
@@ -47,7 +48,7 @@
 <ul>
     <li>pacman -S base linux linux-firmware base base-devel linux-firmware nano</li>
 </ul>
-<h2>Konfigurasi sistem</h2>
+<h2><u>Konfigurasirasi sistem</u></h2>
 <h3>Fstab</h3>
 <ul><li>genfstab -U /mnt >> /mnt/etc/fstab</li></ul>
 <h3>Chroot</h3>
@@ -66,10 +67,10 @@
 <h3>Konfigurasi jaringan</h3>
 <ul>
     <li>nano /etc/hostname isi dengan <i>myarch</i></li>
-    <li>nano /etc/hosts masukan seperti dibawah:</li>
-    <p>127.0.0.1    localhost</p>
-    <p>::1          localhost</p>
-    <p>127.0.1.1    myarch.localdomain    myarch</p>
+    <li>nano /etc/hosts masukan seperti dibawah:</li><pre>
+  127.0.0.1   localhost
+  ::1         localhost
+  127.0.1.1   <i>myarch</i>.localdomain   <i>myarch</i></pre>
 </ul>
 <h3>Membuat sandi root</h3>
 <ul>
@@ -104,7 +105,7 @@
     <li>useradd -m -G wheel <i><b>myname</b></i></li>
     <li>passwd <i><b>myname</b></i></li>
 </ul>
-<h2>Install kde plasma minimal</h2>
+<h2><u>Installtall kde plasma minimal</u></h2>
 <h3>Install display manager</h3>
 <ul>
     <li>pacman -S sddm sddm-kcm</li>
@@ -115,13 +116,14 @@
     <li>pacman -S plasma-desktop konsole dolphin spectacle ark gwenview elisa discover powerdevil plasma-systemmonitor kinfocenter khelpcenter</li>
     <li>pacman -S dolphin-plugins plasma-pa plasma-nm kdeplasma-addons kde-system-meta appstream appstream-qt packagekit packagekit-qt5 gst-libav</li>
 </ul>
+<footer itemscope itemtype="ngetes doang">
 <h3>Mengubah tema kursor sddm</h3>
 <ul>
     <li>buka <i><b>System Settings -->Startup and Shutdown -->Login Screen (SDDM) </b></i></li>
     <li>pilih tema <i>breeze</i>, klik <i>Sinchcronize Settings..</i> dan terahir klik <i>apply</i></li>
     <li>reboot</li>
 </ul>
-
-
+<br />
+<br />
 </body>
 </html>
