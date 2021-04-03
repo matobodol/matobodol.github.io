@@ -18,7 +18,7 @@
 			overflow: auto;
 			}
 		body{
-padding: 50px 60px;
+      padding: 0px 20px 20px;
 			font-family: Arial, Helvatica, sans-serif;
 			background: lavender;
 			}
@@ -33,16 +33,21 @@ padding: 50px 60px;
 		i{
 			font-weight: bold;
 			}
-		.setup{
+		.setup, ul
+      {
 			list-style-type: disc;
-			padding-left: 40px;}
-		ul{
-			padding: 10px 40px
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 30px;
+			padding-right: 10px;
 			list-style-type: disc;
 			border-radius: 10px;
 			background: lightgrey;
 			}
-.tab_dua{display: inline-block; margin-left: 80px;}
+    .tab_dua{
+      display: inline-block; margin-left: 87px;
+      
+    }
 		.tab{
 			display: inline-block;
 			margin-left: 40px;
@@ -142,7 +147,7 @@ padding: 50px 60px;
 				<li># nano /etc/hosts (lalu isi sebagai berikut)</li>
 				<li class="scroll">
 					127.0.0.1<span class="tab"></span>localhost<br>
-					::1 <span class="tab_dua"></span>localhost<br>
+					::1<span class="tab_dua"></span>localhost<br>
 					127.0.0.1<span class="tab"></span><b>MyArch</b>.localdomain<span class="tab"></span><b>MyArch</b>
 				</li>
 			</ul>
