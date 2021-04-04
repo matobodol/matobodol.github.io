@@ -4,13 +4,21 @@
 	<title>cara install arch linux | install desktop kde plasma minimal di arch linux</title>
 	<style type="text/css">
 		h1{
-			border-radius: 10px;
-			background: #7e57c2;
-			color: lightgrey;
+			border-radius: 25px;
+			background: slategrey;
+			color: black;
 			padding: 35px;
 			margin: 0px auto;
 			font-size: 35px;
 			text-align: center;
+			}
+			h2{
+		  font-weight: bold;
+		  border-radius: 10px;
+		  display: inline-block;
+		  padding: 10px;
+		  background: lightslategrey;
+			  
 			}
 		.scroll{
 			font-style: italic;
@@ -18,7 +26,7 @@
 			overflow: auto;
 			}
 		body{
-      padding: 0px 20px 20px;
+      padding: 10px;
 			font-family: Arial, Helvatica, sans-serif;
 			background: lavender;
 			}
@@ -26,37 +34,38 @@
 	    font-size: 14px;
 			border-radius: 10px;
 			padding: 0px 10px;
-			background: grey;
+			background: darkgrey;
 			}
-		#quote{
-			color: gold;
-			}
-		i{
-			font-weight: bold;
-			}
+		i{font-weight: bold;}
 		p{
 		  font-size: 15px;
 		  font-weight: bold;
-		}
+		  border-radius: 10px;
+		  display: inline-block;
+		  padding: 10px;
+		  background: grey;
+  		}
     div{
       font-size: 14px;
 			padding: 10px;
 			border-radius: 10px;
 			background: lightgrey;
-    }
+      }
+    ol{list-style-type: none}
+    .list_2{list-style-type: decimal;}
 		.setup, ul
       {
       font-size: 14px;
 			list-style-type: disc;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			padding-left: 30px;
-			padding-right: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 25px;
+			padding-right: 5px;
 			border-radius: 10px;
 			background: lightgrey;
 			}
     .tab_dua{
-      display: inline-block; margin-left: 87px;
+      display: inline-block; margin-left: 85px;
       }
 		.tab{
 			display: inline-block;
@@ -65,14 +74,16 @@
 	</style>
 </head>
 <body>
-	<h1>
-			Installing arch linux and make it useable
-	</h1>
+	<h1>Installing arch linux and make it useable</h1>
+	<br>
 	<div align="justify"
 		style="text-indent: 45px;">
-	  <b>T</b>utorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.<br>
-		  <br>Sebelum memulai,<br />
+	  <b>T</b>utorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
+	</div>
+	<br>
+  <div>Sebelum memulai,<br>
 			berikut adalah penjelasan tentang setup yang saya pakai:
+	</div>
 		</div>
 		<ul class="setup">
 			<li>proses instal dengan sistem bios/mbr</li>
@@ -84,7 +95,7 @@
 <h2>Pemasangan base linux</h2>
 	<ol>
 		<li><p>Menghubungkan ke internet</p></li>
-			<ol type="a">
+			<ol class="list_2">
 				<li><p>Via iwctl</p></li>
 					<ul class="list">
 						<li># iwctl</li>
@@ -174,7 +185,7 @@
 			</ul>
 		<li><p>Login sebagai root....</p></li>
 		<li><p>Aktifkan koneksi jaringan</p></li>
-			<ol type="a">
+			<ol class="list_2">
 				<li><p>Menghubungkan ke wifi</p></li>
 					<ul class="list">
 						<li># systemctl start NetworkManager</li>
@@ -219,7 +230,5 @@
 				<li>hapus tanda # di baris <i>ShowStatus=yes</i></li>
 			</ul>
 	</ol>
-</div>
-
 </body>
 </html>
