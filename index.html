@@ -23,9 +23,10 @@
 			background: lavender;
 			}
 		q{
+	    font-size: 14px;
 			border-radius: 10px;
 			padding: 0px 10px;
-			background: #7e57c2;
+			background: grey;
 			}
 		#quote{
 			color: gold;
@@ -33,21 +34,30 @@
 		i{
 			font-weight: bold;
 			}
+		p{
+		  font-size: 15px;
+		  font-weight: bold;
+		}
+    div{
+      font-size: 14px;
+			padding: 10px;
+			border-radius: 10px;
+			background: lightgrey;
+    }
 		.setup, ul
       {
+      font-size: 14px;
 			list-style-type: disc;
 			padding-top: 10px;
 			padding-bottom: 10px;
-			padding-left: 40px;
+			padding-left: 30px;
 			padding-right: 10px;
-			list-style-type: disc;
 			border-radius: 10px;
 			background: lightgrey;
 			}
     .tab_dua{
       display: inline-block; margin-left: 87px;
-      
-    }
+      }
 		.tab{
 			display: inline-block;
 			margin-left: 40px;
@@ -58,14 +68,12 @@
 	<h1>
 			Installing arch linux and make it useable
 	</h1>
-	<div class="isi_utama">
-		<p align="justify"
+	<div align="justify"
 		style="text-indent: 45px;">
-		Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
-		</p>
-		<p>Sebelum memulai,<br />
+	  <b>T</b>utorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.<br>
+		  <br>Sebelum memulai,<br />
 			berikut adalah penjelasan tentang setup yang saya pakai:
-		</p>
+		</div>
 		<ul class="setup">
 			<li>proses instal dengan sistem bios/mbr</li>
 			<li>membuat partisi /home sendiri</li>
@@ -73,7 +81,7 @@
 			<li>pembagian partisi menggunakan gparted live xubuntu</li>
 			<li>menggunakan desktop kde plasma (minimal)</li>
 		</ul>
-<h2>Pemasangan base linux</h3>
+<h2>Pemasangan base linux</h2>
 	<ol>
 		<li><p>Menghubungkan ke internet</p></li>
 			<ol type="a">
@@ -99,7 +107,7 @@
 			<ul class="list">
 				<li># cfdisk /dev/sda</li>
 			</ul>
-		<li>Mount partisi</li>
+		<li><p>Mount partisi</p></li>
 			<ul class="list">
 				<li># mount /dev/<i>partisi_root</i> /mnt</li>
 				<li># mkdir /mnt/home</li>
@@ -117,7 +125,7 @@
 				<li class="scroll">pacstrap /mnt base base-devel linux linux-firmware linux-headers nano</li>
 			</ul>
 	</ol>
-<h2>Konfigurasi sistem</h3>
+<h2>Konfigurasi sistem</h2>
 	<ol start="6">
 		<li><p>Fstab</p></li>
 			<ul>
@@ -187,7 +195,7 @@
 				<li class="quote">cari dan hapus tada # pada baris <i>%wheel</i> ALL=(ALL) ALL</li> lalu simpan
 			</ul>
 	</ol>
-<h2>Install desktop kde plasma minimal</h3>
+<h2>Install desktop kde plasma minimal</h2>
 	<ol start="16">
 		<li><p>Instal display manager</p></li>
 			<ul>
