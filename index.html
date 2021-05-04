@@ -4,11 +4,9 @@
 	<title>cara install arch linux | install desktop kde plasma minimal di arch linux</title>
 	<style type="text/css">
 	  body {
-	    font-family: "Lucida Console", "Monaco", monospace;
-	    font-size: 14px;
+	    font-size: 15px;
 	    padding: 8px;
 	    font-size: 14px;
-	    background: lavender;
 	  }
 	  .tab {
 	    max-width: 1000px;
@@ -19,6 +17,9 @@
 	    max-width: 1000px;
       margin: 50px auto;
       padding: 50px;
+	  }
+	  i {
+	    color: red;
 	  }
 	  ul {
 	    list-style-type: none;
@@ -31,6 +32,8 @@
 	  }
 	  p {font-weight: bold;}
 	  .scroll {
+	    font-family: monaco, Consolas, "Lucida Console", monospace;
+	    font-size: 14px;
 	    border-radius: 5px;
 	    background: lightgrey;
 	    overflow: scroll;
@@ -40,7 +43,7 @@
 	  </style>
 </head>
 <body>
-	<h1>Installing arch linux and make it useable</h1>
+	<h1>Installing arch linux and how make it to useable</h1>
 	<br>
 	<div align="justify"
 		style="text-indent: 45px;">
@@ -160,7 +163,7 @@
 				<li># useradd -m -G wheel <i>MyName</i></li>
 				<li># passwd <i>MyName</i></li>
 				<li># EDITOR=nano visudo</li>
-				<li class="quote">cari dan hapus tada # pada baris <i>%wheel</i> ALL=(ALL) ALL</li> lalu simpan
+				<q id="quote">cari dan hapus tada <i>#</i> pada baris <i>%wheel ALL=(ALL) ALL</i> lalu simpan</q>
 			</ul>
 <h2>Install desktop kde plasma minimal</h2>
 		<p>Instal display manager</p>
@@ -175,8 +178,8 @@
 			</ul>
 	  <p>Mengubah tema sddm</p>
 			<ul>
-				<li>buka <b>System Settings &rarr; Startup and Shutdown &rarr; Login Screen (SDDM)</b></li>
-				<li>pilih tema <b>breeze</b>, klik <b>Sinchronize Settings..</b> dan terahir klik <b>apply</b></li>
+				<li>buka <i>System Settings &rarr; Startup and Shutdown &rarr; Login Screen (SDDM)</i></li>
+				<li>pilih tema <i>breeze</i>, klik <i>Sinchronize Settings..</i> dan terahir klik <i>apply</i></li>
 				<li>Reboot..</li>
 			</ul>		
 		<p>List service systemd</p>
