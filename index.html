@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>cara install arch linux | install desktop kde plasma minimal di arch linux</title>
 	<style type="text/css">
 	  body {
       font-family: Arial, Helvetica, sans-serif;
 	    font-size: 15px;
-	    padding: 8px 8px 30px 8px;
+	    padding: 8px 8px 40px 8px;
 	    font-size: 14px;
 	  }
 	  h1 {
@@ -20,7 +20,7 @@
 	  .tab_dua {
 	    max-width: 1000px;
       margin: 50px auto;
-      padding: 0px 90px 0px 95px;
+      padding: 0px 80px 0px 85px;
 	  }
 	  i {
 	    color: red;
@@ -36,6 +36,7 @@
 	  }
 	  p {font-weight: bold;}
 	  .scroll {
+	    border: 1px;
 	    border-style: solid;
 	    border-color: black;
 	    font-family: monaco, Consolas, "Lucida Console", monospace;
@@ -107,7 +108,7 @@
 <h2>Konfigurasi sistem</h2>
 		<p>Fstab</p>
 			<ul>
-				<li># genfstab -U >> /mnt/etc/fstab</li>
+				<li># genfstab -U /mnt >> /mnt/etc/fstab</li>
 			</ul>
 		<p>Chroot</p>
 			<ul>
@@ -124,7 +125,7 @@
 				<q>cari dan hapus komentar (tanda #) pada baris <i id="quote">en_US.UTF-8</i></q><br>
 				<li># locale-gen</li>
 				<li># nano /etc/locale.conf</li>
-				<q>edit dan isi: <i id="quote">LANG=en_UST.UTF-8</i></q>
+				<q>edit dan isi: <i id="quote">LANG=en_US.UTF-8</i></q>
 			</ul>
 		<p>Konfigurasi Jaringan</p>
 			<ul>
@@ -143,7 +144,7 @@
 		<p>Boot loader</p>
 			<ul>
 				<li class="scroll">pacman -S grub networkmanager dialog wireless_tools wpa_supplicant os-prober mtools dosfstools gvfs gvfs-mtp ntfs-3g</li>
-				<li># grub-install --targer=i386-pc /dev/sda</li>
+				<li># grub-install --target=i386-pc /dev/sda</li>
 				<li># grub-mkconfig -o /boot/grub/grub.cfg</li>
 				<li># exit</li>
 				<li># umount -a</li>
@@ -173,7 +174,7 @@
 		<p>Instal display manager</p>
 			<ul>
 				<li># pacman -S sddm sddm-kcm</li>
-				<li># systemctl enable sdm</li>
+				<li># systemctl enable sddm</li>
 			</ul>
 		<p>Instal kde plasma</p>
 			<ul>
