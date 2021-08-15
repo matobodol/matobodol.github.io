@@ -14,7 +14,7 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 
 > **Menghubungkan ke internet**
 
-1. **Via iwctl**
+- Via iwctl
 
 ```bash
 # iwctl
@@ -25,16 +25,16 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 ```
 Pada `namawifi` ganti dengan `wlan0`
 
-2. **Via usb tethering**
+- Via usb tethering
 
-- Hubungkan android ke usb
-- Aktifkan usb tethering di pengaturan android
+`- Hubungkan android ke usb`\
+`- Aktifkan usb tethering di pengaturan android`
 
 Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
 ```bash
 ping 8.8.8.8
 ```
-Tekan Ctrl+c untuk menghentikan proses ping
+Untuk menghentikan proses ping teksn Ctrl+c
 
 > **Perbarui jam sistem**
 
@@ -208,9 +208,9 @@ reboot
 ```
 Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan passwd `123`
 
-> **aktifkan internet**
+> **Aktifkan internet**
 
-1. network manager
+- network manager
 
 ```bash
 systemctl start NetworkManager
@@ -223,16 +223,16 @@ nmtui
 ```
 Akan mucul jendela nmtui, Pilih `Activate a connection`, cari dan pilih wifi lalu masukan password wifinya. untuk keluar pilih `back` lalu `ok`
 
-2. usb tethering
+- usb tethering
 
-- Hubungkan android ke usb
-- Aktifkan usb tethering di pengaturan android
+`- Hubungkan android ke usb`\
+`- Aktifkan usb tethering di pengaturan android`
 
 Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
 ```bash
 ping 8.8.8.8
 ```
-Tekan Ctrl+c untuk menghentikan proses ping
+Untuk menghentikan proses ping tekan Ctrl+c
 
 ## Install kde (minimal)
 
