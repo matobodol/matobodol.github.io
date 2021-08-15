@@ -26,6 +26,6 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 2. **Via usb tethering**
 
 ```bash
-- Hubungkan android ke usb
-- Aktifkan usb tethering di pengaturan android
+* Hubungkan android ke usb
+* Aktifkan usb tethering di pengaturan android
 ```
