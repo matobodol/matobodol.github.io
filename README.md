@@ -11,6 +11,7 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - menggunakan desktop kde plasma (minimal)
 
 ## Configure
+
 > **Menghubungkan ke internet**
 
 1. **Via iwctl**
@@ -254,7 +255,7 @@ $ sudo pacman -S sddm sddm-kcm
 ```bash
 systemctl enable sddm
 ```
-> **paket kde minimal**
+> **Paket kde minimal**
 
 ```bash
 sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub
