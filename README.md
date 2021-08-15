@@ -27,10 +27,9 @@ Pada bagian `namawifi` ganti dengan `wlan0`
 
 2. **Via usb tethering**
 
-```bash
-- Hubungkan android ke usb
-- Aktifkan usb tethering di pengaturan android
-```
+`- Hubungkan android ke usb`\
+`- Aktifkan usb tethering di pengaturan android`
+
 Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
 ```bash
 ping 8.8.8.8
@@ -60,12 +59,10 @@ Misalnya pada `/dev/sda3` dengan size 100 GB akan di bagi menjadi 3 partisi untu
 | /dev/sda5 |  30GB   | Linux |
 | /dev/sda6 | sisanya | Linux |
 
-```
-penjelasan: 
-/dev/sda4 adalah untuk partisi swap
-/dev/sda5 adalah untuk partisi /root
+> penjelasan:\
+/dev/sda4 adalah untuk partisi swap\
+/dev/sda5 adalah untuk partisi /root\
 /dev/sda6 adalah untuk partisi /home
-```
 
 untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
 
@@ -73,10 +70,8 @@ hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsb
 
 > **Formating**
 
-```
-tips:
-gunakan perintah lsblk untuk melihat info drive
-```
+`tips:`
+`gunakan perintah lsblk untuk melihat info drive`
 
 ```bash
 mkswap /dev/sda4
@@ -103,7 +98,7 @@ mkdir /mnt/home
 mount /dev/sda? /mnt/home
 ```
 
-> *$Set fstab**
+> **Set fstab**
 
 Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lakukan `fstab`
 
@@ -141,7 +136,7 @@ dan isi seperti berikut:
 127.0.1.1   $hostname.localdomain   $hostname
 ```
 ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `myarch` sehingga menjadi seperti berikut:
-```bash
+```
 127.0.1.1   myarch.localdomain    myarch
 ```
 
