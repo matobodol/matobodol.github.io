@@ -23,12 +23,12 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 [iwd]# station namawifi get-connect
 [iwd]# station namawifi connect SSID
 ```
-Pada bagian `namawifi` ganti dengan `wlan0`
+Pada `namawifi` ganti dengan `wlan0`
 
 2. **Via usb tethering**
 
-`- Hubungkan android ke usb`\
-`- Aktifkan usb tethering di pengaturan android`
+- Hubungkan android ke usb
+- Aktifkan usb tethering di pengaturan android
 
 Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
 ```bash
@@ -124,7 +124,7 @@ echo '$hostname' > /etc/hostname
 ```
 `$hostname` ganti dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `myarch`
 
-> **hosts**
+> **Hosts**
 
 ```bash
 nano /etc/hosts
@@ -136,12 +136,80 @@ dan isi seperti berikut:
 127.0.1.1   $hostname.localdomain   $hostname
 ```
 ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `myarch` sehingga menjadi seperti berikut:
-```
+```bash
 127.0.1.1   myarch.localdomain    myarch
 ```
+> **Timezone**
 
 ```bash
+ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 ```
 
 ```bash
+hwclock --systohc
 ```
+> **Set licale**
+
+```bash
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
+```bash
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+```
+```bash
+locale-gen
+```
+> **Keymap**
+
+```bash
+echo "KEYMAP=us" > /etc/vconsole.conf
+```
+> **Root password**
+
+Membuat password untuk root
+```bash
+passwd
+```
+> **membuat user**
+
+Ganti setiap `$username` dengan nama anda. Misalnya: `budi`
+```bash
+useradd -m -G wheel $username
+```
+membuat password untuk user. misalnya `123`
+```bash
+passwd $username
+```
+
+> **sudoers**
+
+```bash
+nano /etc/sudoers
+```
+Cari dan hapus tanda pager `#` pada baris `# %wheel ALL=(ALL) ALL`
+> **grub**
+
+```bash
+sudo pacman -S grub base-devel linux-headers networkmanager wireless_tools wpa_supplicant dialog mtools dosfstools os-prober ntfs-3g xdg-user-dirs
+```
+```bash
+grub-install --target=i386-pc /dev/sda
+```
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+> **reboot system**
+
+```bash
+exit
+umount -a
+reboot
+```
+Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan passwd `123`
+> **Install kde (minimal)**
+
+Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum dapat digunakan semestinya distro pada umumnya, dan masih sulit untuk di operasikan. 
+
+Nah, Untuk membuatnya menjadi lebih mudah digunakan maka kita perlu memasang desktop environmen. dan kali ini desktop yg akan kita gunakan adalah kde. Karena selain tampilannya kece, ia juga mudah di kustomisasi. 
+
+Dari banyaknya desktop, kde adalah desktop yg canggih menurut saya dan dirasakan juga oleh user lain.
