@@ -8,7 +8,6 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - proses instal dengan sistem bios/mbr
 - membuat partisi /home sendiri
 - dual boot windows dan arch yang sekarang sedang akan di instal
-- pembagian partisi menggunakan gparted live xubuntu
 - menggunakan desktop kde plasma (minimal)
 
 ## Configure
@@ -206,7 +205,8 @@ umount -a
 reboot
 ```
 Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan passwd `123`
-> **Install kde (minimal)**
+
+## Install kde (minimal)
 
 Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum dapat digunakan semestinya distro pada umumnya, dan masih sulit untuk di operasikan. 
 
