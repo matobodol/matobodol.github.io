@@ -11,7 +11,7 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - pembagian partisi menggunakan gparted live xubuntu
 - menggunakan desktop kde plasma (minimal)
 
-## Pemasangan base linux
+## Configure
 > ### Menghubungkan ke internet
 
 1. **Via iwctl**
@@ -43,18 +43,110 @@ timedatectl set-ntp true
 ```
 > ### Pemartisian
 
-```bash
-cfdisk /dev/sd?
-```
-Tanda "?" pada `/dev/sd?` bisa di sesuaikan pada komputer anda. Untuk mengeceknya bisa gunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
+Sebelem melakukan permartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
 
-selanjutnya silahkan lakukan pembagian pemartisian pada drive yg anda inginkan.
+Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuatan partisi dengan perintah sebagai berikut:
+
+```bash
+cfdisk /dev/sda
+```
+
+Selanjutnya silakan lakukan pembagian pemartisian pada drive yg di inginkan.
 Misalnya pada `/dev/sda3` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux.
 
-|   Drive   |   Size  |
-|   -----   |   ----  |
-| /dev/sda4 |   4GB   |
-| /dev/sda5 |   30GB  |
-| /dev/sda6 | sisanya |
+|   Drive   |   Size  | Type: |
+|   -----   |   ----  | ----- |
+| /dev/sda4 |   4GB   | Linux swap / solaris |
+| /dev/sda5 |  30GB   | Linux |
+| /dev/sda6 | sisanya | Linux |
 
+```
+penjelasan: 
+/dev/sda4 adalah untuk partisi swap
+/dev/sda5 adalah untuk partisi /root
+/dev/sda6 adalah untuk partisi /home
+```
 
+untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
+
+hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
+
+> ### Formating
+
+```
+tips:
+gunakan perintah lsblk untuk melihat info drive
+```
+
+```bash
+mkswap /dev/sda4
+```
+```bash
+mkfs.ext4 /dev/sda5
+```
+```bash
+mkfs.ext4 /dev/sda6
+```
+
+> ### Mount
+
+```bash
+swapon /dev/sda?
+```
+```bash
+mount /dev/sda? /mnt
+```
+```bash
+mkdir /mnt/home
+```
+```bash
+mount /dev/sda? /mnt/home
+```
+
+> ### Set fstab
+
+Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lakukan `fstab`
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+## Install base
+> **Pacstrap**
+
+```bash
+pacstrap /mnt base linux linux-firmware nano
+```
+> **Chroot**
+
+```bash
+arch-chroot /mnt
+```
+> **Hostnane**
+
+```bash
+echo '$hostname' > /etc/hostname
+```
+`$hostname` ganti dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `myarch`
+
+> **hosts**
+
+```bash
+nano /etc/hosts
+```
+dan isi seperti berikut:
+```bash
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   $hostname.localdomain   $hostname
+```
+ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `myarch` sehingga menjadi seperti berikut:
+```bash
+127.0.1.1   myarch.localdomain    myarch
+```
+
+```bash
+```
+
+```bash
+```
