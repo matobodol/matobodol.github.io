@@ -1,4 +1,4 @@
-## Installing arch linux and how make it to useable
+# Installing arch linux and how make it to useable
 
 Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
 
@@ -12,9 +12,10 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - menggunakan desktop kde plasma (minimal)
 
 ## Pemasangan base linux
-> **Menghubungkan ke internet**
+> ### Menghubungkan ke internet
 
-- Via iwctl
+1. **Via iwctl**
+
 ```bash
 # iwctl
 [iwd]# device list
@@ -22,7 +23,8 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 [iwd]# station device get-connect
 [iwd]# station device connect SSID
 ```
-- Via usb tethering
+2. **Via usb tethering**
+
 ```bash
 - Hubungkan android ke usb
 - Aktifkan usb tethering di pengaturan android
