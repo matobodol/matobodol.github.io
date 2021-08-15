@@ -11,7 +11,7 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - menggunakan desktop kde plasma (minimal)
 
 ## Configure
-> ### Menghubungkan ke internet
+> **Menghubungkan ke internet**
 
 1. **Via iwctl**
 
@@ -35,12 +35,12 @@ ping 8.8.8.8
 ```
 Tekan Ctrl+c untuk menghentikan proses ping
 
-> ### Perbarui jam sistem
+> **Perbarui jam sistem**
 
 ```bash
 timedatectl set-ntp true
 ```
-> ### Partisi
+> **Partisi**
 
 Sebelem melakukan permartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
 
@@ -68,7 +68,7 @@ untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, u
 
 hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
 
-> ### Formating
+> **Formating**
 
 `tips:`
 `gunakan perintah lsblk untuk melihat info drive`
@@ -83,7 +83,7 @@ mkfs.ext4 /dev/sda5
 mkfs.ext4 /dev/sda6
 ```
 
-> ### Mount
+> **Mount**
 
 ```bash
 swapon /dev/sda?
@@ -98,7 +98,7 @@ mkdir /mnt/home
 mount /dev/sda? /mnt/home
 ```
 
-> ### Set fstab
+> **Set fstab**
 
 Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lakukan `fstab`
 
