@@ -11,7 +11,7 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 - menggunakan desktop kde plasma (minimal)
 
 ## Configure
-> **Menghubungkan ke internet**
+> ### Menghubungkan ke internet
 
 1. **Via iwctl**
 
@@ -33,13 +33,14 @@ Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk menge
 ```bash
 ping 8.8.8.8
 ```
+Tekan Ctrl+c untuk menghentikan proses ping
 
-> **Perbarui jam sistem**
+> ### Perbarui jam sistem
 
 ```bash
 timedatectl set-ntp true
 ```
-> **Pemartisian**
+> ### Partisi
 
 Sebelem melakukan permartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
 
@@ -67,7 +68,7 @@ untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, u
 
 hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
 
-> **Formating**
+> ### Formating
 
 `tips:`
 `gunakan perintah lsblk untuk melihat info drive`
@@ -82,7 +83,7 @@ mkfs.ext4 /dev/sda5
 mkfs.ext4 /dev/sda6
 ```
 
-> **Mount**
+> ### Mount
 
 ```bash
 swapon /dev/sda?
@@ -97,7 +98,7 @@ mkdir /mnt/home
 mount /dev/sda? /mnt/home
 ```
 
-> **Set fstab**
+> ### Set fstab
 
 Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lakukan `fstab`
 
@@ -169,7 +170,7 @@ Membuat password untuk root
 ```bash
 passwd
 ```
-> **membuat user**
+> **Membuat user**
 
 Ganti setiap `$username` dengan nama anda. Misalnya: `budi`
 ```bash
@@ -180,13 +181,13 @@ membuat password untuk user. misalnya `123`
 passwd $username
 ```
 
-> **sudoers**
+> **Sudoers**
 
 ```bash
 nano /etc/sudoers
 ```
 Cari dan hapus tanda pager `#` pada baris `# %wheel ALL=(ALL) ALL`
-> **grub**
+> **Grub**
 
 ```bash
 sudo pacman -S grub base-devel linux-headers networkmanager wireless_tools wpa_supplicant dialog mtools dosfstools os-prober ntfs-3g xdg-user-dirs
@@ -197,7 +198,7 @@ grub-install --target=i386-pc /dev/sda
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-> **reboot system**
+> **Reboot system**
 
 ```bash
 exit
@@ -206,6 +207,32 @@ reboot
 ```
 Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan passwd `123`
 
+> **aktifkan internet**
+
+1. network manager
+
+```bash
+systemctl start NetworkManager
+```
+```bash
+systemctl enable NetworkManager
+```
+```bash
+nmtui
+```
+Akan mucul jendela nmtui, Pilih `Activate a connection`, cari dan pilih wifi lalu masukan password wifinya. untuk keluar pilih `back` lalu `ok`
+
+2. usb tethering
+
+- Hubungkan android ke usb
+- Aktifkan usb tethering di pengaturan android
+
+Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
+```bash
+ping 8.8.8.8
+```
+Tekan Ctrl+c untuk menghentikan proses ping
+
 ## Install kde (minimal)
 
 Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum dapat digunakan semestinya distro pada umumnya, dan masih sulit untuk di operasikan. 
@@ -213,3 +240,28 @@ Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum 
 Nah, Untuk membuatnya menjadi lebih mudah digunakan maka kita perlu memasang desktop environmen. dan kali ini desktop yg akan kita gunakan adalah kde. Karena selain tampilannya kece, ia juga mudah di kustomisasi. 
 
 Dari banyaknya desktop, kde adalah desktop yg canggih menurut saya dan dirasakan juga oleh user lain.
+
+> **X server**
+
+```bash
+sudo pacman -S xorg xorg-server xorg-xinit
+```
+> **Display manager**
+
+```bash
+$ sudo pacman -S sddm sddm-kcm
+```
+```bash
+systemctl enable sddm
+```
+> **paket kde minimal**
+
+```bash
+sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub
+```
+```bash
+sudo pacman -S bluedevil gst-libav dolphin dolphin-plugins discover appstream appstream-qt apckagekit packagekit-qt5 kdialog
+```
+```bash
+sudo pacman -S konsole yakuake kfind kdeconnect ark gwenview spectacle vlc kinfocenter khelpcenter plasma-systemmonitor
+```
