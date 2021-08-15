@@ -1,199 +1,29 @@
-### kampleng
-> **Tes tes tes**
+## Installing arch linux and how make it to useable
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>cara install arch linux | install desktop kde plasma minimal di arch linux</title>
-	<style type="text/css">
-	  body {
-      font-family: Arial, Helvetica, sans-serif;
-	    font-size: 15px;
-	    padding: 8px 8px 40px 8px;
-	    font-size: 14px;
-	  }
-	  h1 {
-	    text-align: center;
-	  }
-	  .tab {
-	    max-width: 1000px;
-      margin: 50px auto;
-      padding: 0px 25px 0px 25px;
-	  }
-	  .tab_dua {
-	    max-width: 1000px;
-      margin: 50px auto;
-      padding: 0px 80px 0px 85px;
-	  }
-	  i {
-	    color: red;
-	  }
-	  ul {
-	    list-style-type: none;
-	  }
-	  ol {
-	    list-style-type: none;;
-	  }
-	  .setup {
-	    list-style-type: disc;
-	  }
-	  p {font-weight: bold;}
-	  .scroll {
-	    border: 1px;
-	    border-style: solid;
-	    border-color: black;
-	    font-family: monaco, Consolas, "Lucida Console", monospace;
-	    font-size: 14px;
-	    background: lightgrey;
-	    overflow: scroll;
-	    white-space: nowrap;
-	    padding: 2px 10px;
-	  }
-	  </style>
-</head>
-<body>
-	<h1>Installing arch linux and how make it to useable</h1>
-	<br>
-	<div style="text-indent: 50px;">
-	  Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
-	</div>
-	<br>
-  <div>Sebelum memulai,<br>
-			berikut adalah penjelasan tentang setup yang saya pakai:
-	</div>
-		<ul class="setup">
-			<li>proses instal dengan sistem bios/mbr</li>
-			<li>membuat partisi /home sendiri</li>
-			<li>dual boot windows dan arch yang sekarang sedang akan di instal</li>
-			<li>pembagian partisi menggunakan gparted live xubuntu</li>
-			<li>menggunakan desktop kde plasma (minimal)</li>
-		</ul>
-<h2>Pemasangan base linux</h2>
-		<p>Menghubungkan ke internet</p>
-			<p>1. Via iwctl</p>
-					<ul class="list">
-						<li># iwctl</li>
-						<li>[iwd]# device list</li>
-						<li>[iwd]# station <i>device</i> scan</li>
-						<li>[iwd]# station <i>device</i> get-connect</li>
-						<li>[iwd]# station <i>device</i> connect <i>SSID</i></li>
-					</ul>
-				<p>2. Via usb tethering</p>
-					<ul class="list">
-						<li>Hubungkan android ke usb</li>
-						<li>Aktifkan usb tethering di pengaturan android</li>
-					</ul>
-		<p>Perbarui jam sistem</p>
-			<ul class="list">
-				<li># timedatectl set-ntp true</li>
-			</ul>
-		<p>Mengatur partisi</p>
-			<ul class="list">
-				<li># cfdisk /dev/sda</li>
-			</ul>
-		<p>Mount partisi</p>
-			<ul class="list">
-				<li># mount /dev/<i>partisi_root</i> /mnt</li>
-				<li># mkdir /mnt/home</li>
-				<li># mount /dev/<i>partisi_home</i> /mnt/home</li>
-				<li># swapon /dev/<i>partisi_swap</i></li>
-			</ul>
-		<p>Format partisi</p>
-			<ul class="list">
-				<li># mkfs.ext4 /dev/<i>partisi_root</i></li>
-				<li># mkfs.ext4 /dev/<i>partisi_home</i></li>
-				<li># mkswap /dev/<i>partisi_swap</i></li>
-			</ul>
-		<p>Instal base sistem</p>
-			<ul>
-				<li class="scroll">pacstrap /mnt base base-devel linux linux-firmware linux-headers nano</li>
-			</ul>
-<h2>Konfigurasi sistem</h2>
-		<p>Fstab</p>
-			<ul>
-				<li># genfstab -U /mnt >> /mnt/etc/fstab</li>
-			</ul>
-		<p>Chroot</p>
-			<ul>
-				<li># arh-chroot /mnt</li>
-			</ul>
-		<p>Zona waktu</p>
-			<ul>
-				<li># ln -sf /usr/share/zoneinfo/<i>Region</i>/<i>City</i> /etc/localtime</li>
-				<li># hwclock --systohc</li>
-			</ul>
-		<p>Lokalisasi</p>
-			<ul>
-				<li># nano /etc/locale.gen</li>
-				<q>cari dan hapus komentar (tanda #) pada baris <i id="quote">en_US.UTF-8</i></q><br>
-				<li># locale-gen</li>
-				<li># nano /etc/locale.conf</li>
-				<q>edit dan isi: <i id="quote">LANG=en_US.UTF-8</i></q>
-			</ul>
-		<p>Konfigurasi Jaringan</p>
-			<ul>
-				<li># nano /etc/hostname (ketik <i>MyArch</i> lalu simpan)</li>
-				<li># nano /etc/hosts (lalu isi sebagai berikut)</li>
-				<li class="scroll">
-					127.0.0.1<span class="tab"></span>localhost<br>
-					::1<span class="tab_dua"></span>localhost<br>
-					127.0.1.1<span class="tab"></span><b>MyArch</b>.localdomain<span class="tab"></span><b>MyArch</b>
-				</li>
-			</ul>
-		<p>Membuat sandi untuk root</p>
-			<ul>
-				<li># passwd</li>
-			</ul>
-		<p>Boot loader</p>
-			<ul>
-				<li class="scroll">pacman -S grub networkmanager dialog wireless_tools wpa_supplicant os-prober mtools dosfstools gvfs gvfs-mtp ntfs-3g</li>
-				<li># grub-install --target=i386-pc /dev/sda</li>
-				<li># grub-mkconfig -o /boot/grub/grub.cfg</li>
-				<li># exit</li>
-				<li># umount -a</li>
-				<li># reboot</li>			
-			</ul>
-		<p>Login sebagai root....</p>
-		<p>Aktifkan koneksi jaringan</p>
-				<p>1. Menghubungkan ke wifi</p>
-					<ul class="list">
-						<li># systemctl start NetworkManager</li>
-						<li># nmtui &rarr; <i>activate a connection</i> &rarr; hubungkan ke wifi, masukan sandi.</li>
-						<li># systemctl enable NetworkManager</li>
-					</ul>
-				<p>2. Via usb tethering</p>
-					<ul class="list">
-						<li>Hubungkan android ke usb</li>
-						<li>Aktifkan usb tethering di pengaturan android</li>
-					</ul>
-		<p>Membuat user baru</p>
-			<ul>
-				<li># useradd -m -G wheel <i>MyName</i></li>
-				<li># passwd <i>MyName</i></li>
-				<li># EDITOR=nano visudo</li>
-				<q id="quote">cari dan hapus tada <i>#</i> pada baris <i>%wheel ALL=(ALL) ALL</i> lalu simpan</q>
-			</ul>
-<h2>Install desktop kde plasma minimal</h2>
-		<p>Instal display manager</p>
-			<ul>
-				<li># pacman -S sddm sddm-kcm</li>
-				<li># systemctl enable sddm</li>
-			</ul>
-		<p>Instal kde plasma</p>
-			<ul>
-				<li class="scroll">pacman -S plasma-desktop konsole dolphin spectacle ark gwenview plasma-systemmonitor kinfocenter discover powerdevil</li><br/>
-				<li class="scroll">pacman -S dolphin-plugins packagekit packagekit-qt5 appstream appstream-qt plasma-nm plasma-pa kdeplasma-addons kde-system-meta khelpcenter gst-libav</li>
-			</ul>
-	  <p>Mengubah tema sddm</p>
-			<ul>
-				<li>buka <i>System Settings &rarr; Startup and Shutdown &rarr; Login Screen (SDDM)</i></li>
-				<li>pilih tema <i>breeze</i>, klik <i>Sinchronize Settings..</i> dan terahir klik <i>apply</i></li>
-				<li>Reboot..</li>
-			</ul>		
-		<p>List service systemd</p>
-			<ul>
-				<li># nano /etc/systemd/system.conf</li>
-				<li>hapus tanda <i>#</i> di baris <i>ShowStatus=yes</i></li>
-			</ul>
-</body>
-</html>
+Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
+
+Sebelum memulai,
+berikut adalah penjelasan tentang setup yang saya pakai:
+
+- proses instal dengan sistem bios/mbr
+- membuat partisi /home sendiri
+- dual boot windows dan arch yang sekarang sedang akan di instal
+- pembagian partisi menggunakan gparted live xubuntu
+- menggunakan desktop kde plasma (minimal)
+
+## Pemasangan base linux
+> **Menghubungkan ke internet**
+
+- Via iwctl
+```bash
+# iwctl
+[iwd]# device list
+[iwd]# station device scan
+[iwd]# station device get-connect
+[iwd]# station device connect SSID
+```
+- Via usb tethering
+```bash
+- Hubungkan android ke usb
+- Aktifkan usb tethering di pengaturan android
+```
