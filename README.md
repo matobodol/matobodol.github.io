@@ -1,4 +1,4 @@
-# Installing arch linux and how make it to useable
+# Install arch linux dan menjadikannya mudah untuk digunakan
 
 Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
 
@@ -43,7 +43,7 @@ timedatectl set-ntp true
 ```
 > **Partisi**
 
-Sebelem melakukan permartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
+Sebelum melakukan pemartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
 
 Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuatan partisi dengan perintah sebagai berikut:
 
@@ -54,12 +54,13 @@ cfdisk /dev/sda
 Selanjutnya lakukan pembagian partisi pada drive yg di inginkan.
 Misalnya pada `/dev/sda4` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
 
-penting: jika pada hardisk membutuhkan lebih dari 4 partisi maka partisi ke 4 harus bertipe extended
+penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka partisi yg ke 4 harus dibuat dengan tipe extended
 
 |   Drive   |   Size  | Type: |
 |   -----   |   ----  | ----- |
-| /dev/sda5 |   4GB   | Linux swap / solaris |
-| /dev/sda6 |  30GB   | Linux |
+| /dev/sda4 |         | extended |
+| /dev/sda5 | 4GB | Linux swap / solaris |
+| /dev/sda6 | 30GB | Linux |
 | /dev/sda7 | sisanya | Linux |
 
 > penjelasan:\
@@ -129,7 +130,7 @@ arch-chroot /mnt
 ```bash
 echo '$hostname' > /etc/hostname
 ```
-`$hostname` ganti dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `myarch`
+Ganti `$hostname` dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `myarch`
 
 > **Hosts**
 
