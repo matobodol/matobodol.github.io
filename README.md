@@ -34,7 +34,7 @@ Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk menge
 ```bash
 ping 8.8.8.8
 ```
-Untuk menghentikan proses ping teksn Ctrl+c
+Untuk menghentikan proses ping tekan Ctrl+c
 
 > **Perbarui jam sistem**
 
@@ -51,37 +51,41 @@ Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuata
 cfdisk /dev/sda
 ```
 
-Selanjutnya silakan lakukan pembagian pemartisian pada drive yg di inginkan.
-Misalnya pada `/dev/sda3` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux.
+Selanjutnya lakukan pembagian partisi pada drive yg di inginkan.
+Misalnya pada `/dev/sda4` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
+
+penting: jika pada hardisk membutuhkan lebih dari 4 partisi maka partisi ke 4 harus bertipe extended
 
 |   Drive   |   Size  | Type: |
 |   -----   |   ----  | ----- |
-| /dev/sda4 |   4GB   | Linux swap / solaris |
-| /dev/sda5 |  30GB   | Linux |
-| /dev/sda6 | sisanya | Linux |
+| /dev/sda5 |   4GB   | Linux swap / solaris |
+| /dev/sda6 |  30GB   | Linux |
+| /dev/sda7 | sisanya | Linux |
 
 > penjelasan:\
-/dev/sda4 adalah untuk partisi swap\
-/dev/sda5 adalah untuk partisi /root\
-/dev/sda6 adalah untuk partisi /home
+/dev/sda5 adalah untuk partisi swap\
+/dev/sda6 adalah untuk partisi /root\
+/dev/sda7 adalah untuk partisi /home
 
 untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
 
 hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
 
+> Jika di tahap Partisi ini anda tidak paham, saya sarankan untuk menghentikan mengikuti panduan menginstall arch linux ini sebelum semua menjadi buruk. bukan salah anda hanya saja saya tidak pandai menjelaskan. 
+
 > **Formating**
 
 `tips:`
-`gunakan perintah lsblk untuk melihat info drive`
+`untuk menghindari salah format drive, gunakan perintah lsblk untuk melihat info drive`
 
 ```bash
-mkswap /dev/sda4
-```
-```bash
-mkfs.ext4 /dev/sda5
+mkswap /dev/sda5
 ```
 ```bash
 mkfs.ext4 /dev/sda6
+```
+```bash
+mkfs.ext4 /dev/sda7
 ```
 
 > **Mount**
@@ -98,6 +102,8 @@ mkdir /mnt/home
 ```bash
 mount /dev/sda? /mnt/home
 ```
+
+Ganti tanda `?` dengan identitas drive. gunakan kembali perintah `lsblk` jika anda masih bingung.
 
 > **Set fstab**
 
@@ -118,7 +124,7 @@ pacstrap /mnt base linux linux-firmware nano
 ```bash
 arch-chroot /mnt
 ```
-> **Hostnane**
+> **Hostname**
 
 ```bash
 echo '$hostname' > /etc/hostname
@@ -149,7 +155,7 @@ ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 ```bash
 hwclock --systohc
 ```
-> **Set licale**
+> **Set locale**
 
 ```bash
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
@@ -173,7 +179,7 @@ passwd
 ```
 > **Membuat user**
 
-Ganti setiap `$username` dengan nama anda. Misalnya: `budi`
+Ganti `$username` dengan nama anda. Misalnya: `budi`
 ```bash
 useradd -m -G wheel $username
 ```
