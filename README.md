@@ -19,11 +19,11 @@ berikut adalah penjelasan tentang setup yang saya pakai:
 ```bash
 # iwctl
 [iwd]# device list
-[iwd]# station namawifi scan
-[iwd]# station namawifi get-connect
-[iwd]# station namawifi connect SSID
+[iwd]# station $wificard scan
+[iwd]# station $wificard get-connect
+[iwd]# station $wificard connect $SSID
 ```
-Pada `namawifi` ganti dengan `wlan0`
+Pada `$wificard` ganti dengan `wlan0` atau sesuakian pada keluaran `device list` dan untuk $SSID ganti dengan target wifi untuk di sambungkan.
 
 - Via usb tethering
 
@@ -51,8 +51,7 @@ Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuata
 cfdisk /dev/sda
 ```
 
-Selanjutnya lakukan pembagian partisi pada drive yg di inginkan.
-Misalnya pada `/dev/sda4` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
+Selanjutnya lakukan pembagian partisi pada drive yg di inginkan. Misalnya pada `/dev/sda4` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
 
 penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka partisi yg ke 4 harus dibuat dengan tipe extended
 
@@ -192,9 +191,10 @@ passwd $username
 > **Sudoers**
 
 ```bash
-nano /etc/sudoers
+EDITOR=nano visudo
 ```
 Cari dan hapus tanda pager `#` pada baris `# %wheel ALL=(ALL) ALL`
+
 > **Grub**
 
 ```bash
@@ -206,6 +206,7 @@ grub-install --target=i386-pc /dev/sda
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
 > **Reboot system**
 
 ```bash
@@ -213,7 +214,7 @@ exit
 umount -a
 reboot
 ```
-Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan passwd `123`
+Setelah reboot, login sebagai user. Dalam contoh ini nama usernya adalah `budi` dan dengan password `123`
 
 > **Aktifkan internet**
 
@@ -232,7 +233,7 @@ Akan mucul jendela nmtui, Pilih `Activate a connection`, cari dan pilih wifi lal
 
 - usb tethering
 
-`- Hubungkan android ke usb`\
+`- Hubungkan android melalui kabel usb`\
 `- Aktifkan usb tethering di pengaturan android`
 
 Sebelum melanjutkan pastikan jaringan sudah terkoneksi dengan benar. untuk mengeceknya lakukan ping ke dns google:
@@ -243,33 +244,35 @@ Untuk menghentikan proses ping tekan Ctrl+c
 
 ## Install kde (minimal)
 
-Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum dapat digunakan semestinya distro pada umumnya, dan masih sulit untuk di operasikan. 
+Sampai disini bisa dikatakan kita telah selesai install arch linux. namun belum dapat digunakan semestinya distro pada umumnya, dan masih sulit untuk di operasikan karena masih berbasis CLI. 
 
-Nah, Untuk membuatnya menjadi lebih mudah digunakan maka kita perlu memasang desktop environmen. dan kali ini desktop yg akan kita gunakan adalah kde. Karena selain tampilannya kece, ia juga mudah di kustomisasi. 
+Nah, Untuk membuatnya menjadi lebih mudah digunakan maka kita perlu memasang desktop environmen. dan kali ini desktop yg akan kita gunakan adalah kde. Karena selain tampilannya kece, kde juga mudah di kustomisasi. 
 
-Dari banyaknya desktop, kde adalah desktop yg canggih menurut saya dan dirasakan juga oleh user lain.
+Dari banyaknya desktop, kde adalah desktop yg canggih menurut saya.
 
 > **X server**
 
 ```bash
-sudo pacman -S xorg xorg-server xorg-xinit
+$ sudo pacman -S xorg xorg-server xorg-xinit
 ```
+
 > **Display manager**
 
 ```bash
 $ sudo pacman -S sddm sddm-kcm
 ```
 ```bash
-systemctl enable sddm
+$ sudo systemctl enable sddm
 ```
+
 > **Paket kde minimal**
 
 ```bash
-sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub
+$ sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub
 ```
 ```bash
-sudo pacman -S bluedevil gst-libav dolphin dolphin-plugins discover appstream appstream-qt apckagekit packagekit-qt5 kdialog
+$ sudo pacman -S bluedevil gst-libav dolphin dolphin-plugins discover appstream appstream-qt packagekit packagekit-qt5 kdialog
 ```
 ```bash
-sudo pacman -S konsole yakuake kfind kdeconnect ark gwenview spectacle vlc kinfocenter khelpcenter plasma-systemmonitor
+$ sudo pacman -S konsole yakuake kfind kdeconnect ark gwenview okular spectacle vlc kinfocenter khelpcenter plasma-systemmonitor
 ```
