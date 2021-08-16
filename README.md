@@ -69,9 +69,9 @@ penting: jika pada hardisk membutuhkan lebih dari 4 partisi maka partisi ke 4 ha
 
 untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
 
-hasil pembagian pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
+hasil pemartisian yg tadi kita buat dapat dilihat dengan perintah `lsblk`
 
-> Jika di tahap Partisi ini anda tidak paham, saya sarankan untuk menghentikan mengikuti panduan menginstall arch linux ini sebelum semua menjadi buruk. bukan salah anda hanya saja saya tidak pandai menjelaskan. 
+Jika di tahap Partisi ini anda tidak mengerti, saya sarankan untuk menghentikan mengikuti panduan menginstall arch linux ini sebelum semua menjadi buruk. Bukan salah anda hanya saja saya tidak pandai menjelaskan. 
 
 > **Formating**
 
