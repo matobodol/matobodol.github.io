@@ -59,7 +59,7 @@ penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka part
 |   -----   |   ----  | ----- |
 | /dev/sda1 | 500MB   | windows boot |
 | /dev/sda2 | 100GB   | Drice :C |
-| /dev|sda3 | 25Gb    | Drive :D  |
+| /dev/sda3 | 25Gb    | Drive :D  |
 | /dev/sda4 |    100GB     | extended |
 | /dev/sda5 | 4GB | Linux swap / solaris |
 | /dev/sda6 | 30GB | Linux |
