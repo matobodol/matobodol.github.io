@@ -6,7 +6,7 @@ Sebelum memulai,
 berikut adalah penjelasan tentang setup yang saya pakai:
 
 - proses instal dengan sistem bios/mbr
-- membuat partisi /home sendiri
+- membuat partisi /home terpisah
 - dual boot windows dan arch yang sekarang sedang akan di instal
 - menggunakan desktop kde plasma (minimal)
 
