@@ -66,12 +66,12 @@ penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka part
 | /dev/sda7 | 60GB | Linux |
 
 > penjelasan:\
-sda1 sampai sda3 adalah partisi primary yg isinya partisi windows\
+- sda1 sampai sda3 adalah partisi primary yg isinya partisi windows\
 \
-sda4 adalah partisi extended yg isinya adalah sda 5 sampai sda 7 \
-/dev/sda5 adalah untuk partisi swap\
-/dev/sda6 adalah untuk partisi /root\
-/dev/sda7 adalah untuk partisi /home
+- sda4 adalah partisi extended yg isinya adalah sda 5 sampai sda 7 \
+- /dev/sda5 adalah untuk partisi swap\
+- /dev/sda6 adalah untuk partisi /root\
+- /dev/sda7 adalah untuk partisi /home
 
 untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
 
