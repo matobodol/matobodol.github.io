@@ -206,6 +206,7 @@ passwd $username
 EDITOR=nano visudo
 ```
 Cari dan hapus tanda pager `#` pada baris `# %wheel ALL=(ALL) ALL`
+Untu menyimpan perubahan tekan Ctrl+c setelah itu untuk keluar dari nano text editor tekan Ctrl+x
 
 > **Grub**
 
