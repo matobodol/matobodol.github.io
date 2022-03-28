@@ -1,6 +1,6 @@
 # Install arch linux dan menjadikannya mudah untuk digunakan
 
-Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah digunakan. Meskipun demikian, tutorial ini semoga membantu dalam menginstal arch linux.
+Tutorial ini ditulis sebagai dokumentasi pribadi dalam menginstal arch linux dan beberapa setup untuk membuatnya menjadi lebih mudah untuk digunakan. Meskipun demikian, tutorial ini semoga membantu pemula dalam menginstal arch linux.
 
 Sebelum memulai,
 berikut adalah penjelasan tentang setup yang saya pakai:
@@ -43,7 +43,7 @@ timedatectl set-ntp true
 ```
 > **Partisi**
 
-Sebelum melakukan pemartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg akan kita install adalah `sda` atau `sdb`.
+Sebelum melakukan pemartisian alangkah baiknya kita mengetahui info tentang hardisk kita. Untuk mengeceknya bisa menggunakan perintah `lsblk` dan disana kita akan mengetahui hardisk yg kita gunakan apakah `sda` atau `sdb`.
 
 Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuatan partisi dengan perintah sebagai berikut:
 
@@ -57,15 +57,21 @@ penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka part
 
 |   Drive   |   Size  | Type: |
 |   -----   |   ----  | ----- |
+| /dev/sda1 | 500MB   | windows boot |
+| /dev/sda2 | 100GB   | Drice \:C |
+| /dev|sda3 | 25Gb    | Drive \:D  |
 | /dev/sda4 |         | extended |
 | /dev/sda5 | 4GB | Linux swap / solaris |
 | /dev/sda6 | 30GB | Linux |
 | /dev/sda7 | sisanya | Linux |
 
 > penjelasan:\
+sda1 sampai sda3 adalah partisi primary yg isinya partisi windows\
+\
+sda4 adalah partisi extended yg isinya adalah sda 5 samapai sda 7 \
 /dev/sda5 adalah untuk partisi swap\
 /dev/sda6 adalah untuk partisi /root\
-/dev/sda7 adalah untuk partisi /home
+/dev/sda7 adalah untuk partisi /home\
 
 untuk menerapkan perubahan pilih `[Write]` dan ketikan `yes` lalu tekan enter, untuk keluar pilih `[Quit]`
 
@@ -77,47 +83,52 @@ Jika di tahap Partisi ini anda tidak mengerti, saya sarankan untuk menghentikan 
 
 `tips:`
 `untuk menghindari salah format drive, gunakan perintah lsblk untuk melihat info drive`
-
+memformat partisi swap
 ```bash
 mkswap /dev/sda5
 ```
+memformat partisi sda6 menjadi ext4 untuk mountpoint /root
 ```bash
 mkfs.ext4 /dev/sda6
 ```
+memformat partisi sda7 menjadi ext4 untuk mountpoin /home
 ```bash
 mkfs.ext4 /dev/sda7
 ```
 
 > **Mount**
 
+mengaktifkan partisi swap yg sudah kita format tadi
 ```bash
 swapon /dev/sda?
 ```
+mount partisi /root untuk tempat kita install base sistem archlinux
 ```bash
 mount /dev/sda? /mnt
 ```
+membuat direktori home
 ```bash
 mkdir /mnt/home
 ```
+mount partisi /home 
 ```bash
 mount /dev/sda? /mnt/home
 ```
 
 Ganti tanda `?` dengan identitas drive. gunakan kembali perintah `lsblk` jika anda masih bingung.
 
-> **Set fstab**
-
-Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lakukan `fstab`
-
-```bash
-genfstab -U /mnt >> /mnt/etc/fstab
-```
-
 ## Install base
 > **Pacstrap**
 
+Jika proses pemartisian yakin telah diatur dengan benar, berikutnya lanjutkan dengan install base sistem
+
 ```bash
 pacstrap /mnt base linux linux-firmware nano
+```
+> **Set fstab**
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 > **Chroot**
 
@@ -129,7 +140,7 @@ arch-chroot /mnt
 ```bash
 echo '$hostname' > /etc/hostname
 ```
-Ganti `$hostname` dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `myarch`
+Ganti `$hostname` dengan nama yg anda inginkan untuk komputer/host. misalnya kita ganti dengan `laptopku`
 
 > **Hosts**
 
@@ -142,7 +153,7 @@ dan isi seperti berikut:
 ::1         localhost
 127.0.1.1   $hostname.localdomain   $hostname
 ```
-ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `myarch` sehingga menjadi seperti berikut:
+ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `laptopku` sehingga menjadi seperti berikut:
 ```bash
 127.0.1.1   myarch.localdomain    myarch
 ```
@@ -200,6 +211,7 @@ Cari dan hapus tanda pager `#` pada baris `# %wheel ALL=(ALL) ALL`
 ```bash
 sudo pacman -S grub base-devel linux-headers networkmanager wireless_tools wpa_supplicant dialog mtools dosfstools os-prober ntfs-3g xdg-user-dirs
 ```
+perlu di perhatikan, command di bawah hanya berlaku untuk menginstall grub jenis bios/mbr
 ```bash
 grub-install --target=i386-pc /dev/sda
 ```
@@ -268,11 +280,17 @@ $ sudo systemctl enable sddm
 > **Paket kde minimal**
 
 ```bash
-$ sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub
+$ sudo pacman -S plasma-desktop plasma-nm plasma-pa kdeplasma-addons kde-system-meta breeze breeze-grub powerdevil
 ```
 ```bash
 $ sudo pacman -S bluedevil gst-libav dolphin dolphin-plugins discover appstream appstream-qt packagekit packagekit-qt5 kdialog
 ```
 ```bash
-$ sudo pacman -S konsole yakuake kfind kdeconnect ark gwenview okular spectacle vlc kinfocenter khelpcenter plasma-systemmonitor
+$ sudo pacman -S konsole kfind kdeconnect ark gwenview okular spectacle vlc kinfocenter khelpcenter plasma-systemmonitor
 ```
+reboot system
+
+> **sddm theme**
+
+masuk ke setting pilih startup & shutdown pilih sddm dan ganti theme ke breeze.
+
