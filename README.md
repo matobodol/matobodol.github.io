@@ -82,7 +82,7 @@ Jika di tahap Partisi ini anda tidak mengerti, saya sarankan untuk menghentikan 
 > **Formating**
 
 `tips:`
-`untuk menghindari salah format drive, gunakan perintah lsblk untuk melihat info drive`\
+`untuk menghindari salah format drive, gunakan perintah lsblk untuk melihat info drive`
 
 memformat partisi swap
 ```bash
