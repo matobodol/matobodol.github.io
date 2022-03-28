@@ -51,19 +51,19 @@ Kita asumsikan bahwa hardisk kita adalah yg `sda`. Maka silakan lakukan pembuata
 cfdisk /dev/sda
 ```
 
-Selanjutnya lakukan pembagian partisi pada drive yg di inginkan. Misalnya pada `/dev/sda4` dengan size 100 GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
+Selanjutnya lakukan pembagian partisi pada drive yg di inginkan. Misalnya pada `/dev/sda4` dengan size 250GB akan di bagi menjadi 3 partisi untuk menginstall arch linux. 
 
 penting: jika anda membutuhkan lebih dari 4 partisi pada satu hardisk, maka partisi yg ke 4 harus dibuat dengan tipe extended
 
 |   Drive   |   Size  | Type: |
 |   -----   |   ----  | ----- |
 | /dev/sda1 | 500MB   | windows boot |
-| /dev/sda2 | 100GB   | Drice \:C |
-| /dev|sda3 | 25Gb    | Drive \:D  |
+| /dev/sda2 | 100GB   | Drice :C |
+| /dev|sda3 | 25Gb    | Drive :D  |
 | /dev/sda4 |         | extended |
 | /dev/sda5 | 4GB | Linux swap / solaris |
 | /dev/sda6 | 30GB | Linux |
-| /dev/sda7 | sisanya | Linux |
+| /dev/sda7 | 60GB | Linux |
 
 > penjelasan:\
 sda1 sampai sda3 adalah partisi primary yg isinya partisi windows\
