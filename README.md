@@ -156,7 +156,7 @@ dan isi seperti berikut:
 ```
 ganti semua `$hostname` dengan nama yg telah diberikan sebelumnya untuk komputer/host yaitu `laptopku` sehingga menjadi seperti berikut:
 ```bash
-127.0.1.1   myarch.localdomain    myarch
+127.0.1.1   laptopku.localdomain    laptopku
 ```
 > **Timezone**
 
